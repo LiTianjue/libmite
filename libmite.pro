@@ -14,7 +14,9 @@ SOURCES += \
     src/json/cJSON_Utils.c \
     test/json_test.c \
     src/threadpool/threadpool.c \
-    test/thread_pool_test.c
+    test/thread_pool_test.c \
+    test/file_test.c \
+    src/filehelper/mite_file_helper.c
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -97,5 +99,6 @@ HEADERS += \
     inc/md5/mite_md5.h \
     inc/json/cJSON.h \
     inc/json/cJSON_Utils.h \
-    inc/threadpool/threadpool.h
+    inc/threadpool/threadpool.h \
+    inc/filehelper/mite_file_helper.h
 
