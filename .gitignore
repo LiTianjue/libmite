@@ -1,5 +1,4 @@
 #qt pro
-*.pro
 *.user
 
 # ignore opesnnl include 
