@@ -16,7 +16,9 @@ SOURCES += \
     src/threadpool/threadpool.c \
     test/thread_pool_test.c \
     test/file_test.c \
-    src/filehelper/mite_file_helper.c
+    src/filehelper/mite_file_helper.c \
+    test/socket_test.c \
+    src/sockethelper/socket_helper.c
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -100,5 +102,6 @@ HEADERS += \
     inc/json/cJSON.h \
     inc/json/cJSON_Utils.h \
     inc/threadpool/threadpool.h \
-    inc/filehelper/mite_file_helper.h
+    inc/filehelper/mite_file_helper.h \
+    inc/sockethelper/socket_helper.h
 

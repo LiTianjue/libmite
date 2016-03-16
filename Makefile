@@ -10,12 +10,14 @@ SRC+=src/md5/*.c
 SRC+=src/json/*.c
 SRC+=src/threadpool/*.c
 SRC+=src/filehelper/*.c
+SRC+=src/sockethelper/*.c
 
 INC= -I./
 
 TARGET = base64_test md5_test json_test
 TARGET += thread_pool_test
 TARGET += file_test
+TARGET += socket_test
 
 
 all:$(TARGET)
@@ -34,6 +36,9 @@ thread_pool_test:test/thread_pool_test.c
 
 file_test:test/file_test.c 
 	@$(CC) -o bin/file_test test/file_test.c  $(SRC) $(INC) $(LDFLAGS) $(CFLAGS)
+
+socket_test:test/socket_test.c 
+	@$(CC) -o bin/socket_test test/socket_test.c  $(SRC) $(INC) $(LDFLAGS) $(CFLAGS)
 
 clean:
 	@rm *.o $(TARGET) bin/* -f
