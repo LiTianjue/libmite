@@ -1,4 +1,6 @@
 #include "inc/filehelper/mite_file_helper.h"
+#include <sys/stat.h>
+ #include <libgen.h>
 
 #define BUFFER_SIZE 2048
 
@@ -90,3 +92,109 @@ int mite_file_helper_copy(const char *src, const char *des)
    close(to_fd);
    return ret;
 }
+
+
+
+/********************************************/
+/*------------------------------
+ *  功能： 获得一个文件的大小,单位 byte
+ *  说明 ： 传入的字符串为文件的绝对路径
+ *			不能获得文件夹的大小
+ *-----------------------------*/
+long mite_file_helper_GetFileSize(char *path)
+{
+    struct stat buf;
+    int iRet = stat(path,&buf);
+    if(iRet == -1)
+        return 0;
+    return buf.st_size;
+}
+
+/**************************************/
+
+/*------------------------------
+ *  功能： 创建文件夹
+ *  说明 : 需要是'/'结束的字串，不然最后的字串会被当成文件
+ *-----------------------------*/
+int mite_file_helper_CreateDir(char *pDir)
+{
+    int i = 0;
+    int iRet = 0;
+    int iLen;
+    char* pszDir;
+    char *file_path = NULL;
+
+    if(NULL == pDir)
+    {
+        return 0;
+    }
+    pszDir = strdup(pDir);
+    iLen = strlen(pszDir);
+
+    for(i = 0;;i++)
+    {
+        if(pszDir[i] != '\0')
+        {
+            if(pszDir[i] == '/')
+            {
+                file_path = pszDir + i;
+            }
+        }
+        else{
+            *file_path = '\0';
+            break;
+        }
+    }
+
+    for (i = 0;i < iLen;i ++)
+    {
+        if ((pszDir[i] == '/') && (i > 0))
+        {
+            pszDir[i] = '\0';
+            if(access(pszDir,F_OK) < 0)
+            {
+                if(mkdir(pszDir,0755) < 0)
+                {
+                    //perror("mkdir");
+                    return -1;
+                }
+            }
+            pszDir[i] = '/';
+        }
+    }
+
+    iRet = mkdir(pszDir,0755);
+    free(pszDir);
+    return iRet;
+}
+
+
+/*------------------------------
+ *  功能： 从路径中提取文件名
+ *  描述： 有bug
+ *-----------------------------*/
+const char *mite_file_helper_GetFileName(char *path)
+{
+    char m_path[128] = {0};
+    strcpy(m_path,path);
+    //printf("-- %s --\n",m_path);
+    return basename(m_path);
+}
+
+/*------------------------------
+ *  功能： 去掉文件名获得路径名不带结尾 '/'
+ *  描述： 有bug
+ *-----------------------------*/
+const char *mite_file_helper_GetDirName(char *path)
+{
+    char m_path[128] = {0};
+    strcpy(m_path,path);
+    //printf("-- %s --\n",m_path);
+    return dirname(m_path);
+}
+
+
+
+
+
+

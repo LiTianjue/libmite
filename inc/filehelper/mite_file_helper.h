@@ -15,5 +15,14 @@ int mite_file_helper_copy(const char *src,const char *des);
 int mite_file_helper_move(const char *src,const char *des);
 
 
+//获取文件大小
+long mite_file_helper_GetFileSize(char *path);
+//创建文件夹
+int mite_file_helper_CreateDir(char *pDir);
+
+//获取文件名或路径名
+const char *mite_file_helper_GetFileName(char *path);
+const char *mite_file_helper_GetDirName(char *path);
+
 #endif // FILE_HELPER_H
 

@@ -18,7 +18,9 @@ SOURCES += \
     test/file_test.c \
     src/filehelper/mite_file_helper.c \
     test/socket_test.c \
-    src/sockethelper/socket_helper.c
+    src/sockethelper/socket_helper.c \
+    example/cmdopt/cmdopt_test.c \
+    example/mysql/mysql_test.c
 
 include(deployment.pri)
 qtcAddDeployment()
