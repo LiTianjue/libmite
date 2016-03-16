@@ -5,6 +5,9 @@
 # ignore opesnnl include 
 #inc/openssl/
 
+# ignore test bin
+bin/*
+
 
 
 # Compiled Object files
