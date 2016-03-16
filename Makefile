@@ -1,16 +1,19 @@
 CC=gcc
 
 LDFLAGS= -lm -lcrypto
+LDFLAGS+= -lpthread
 
 CFLAGS= -g
 
 SRC+=src/base64/*.c
 SRC+=src/md5/*.c
 SRC+=src/json/*.c
+SRC+=src/threadpool/*.c
 
 INC= -I./
 
 TARGET = base64_test md5_test json_test
+TARGET += thread_pool_test
 
 
 all:$(TARGET)
@@ -23,6 +26,9 @@ md5_test:test/md5_test.c
 
 json_test:test/json_test.c 
 	@$(CC) -o bin/json_test test/json_test.c  $(SRC) $(INC) $(LDFLAGS) $(CFLAGS)
+
+thread_pool_test:test/thread_pool_test.c 
+	@$(CC) -o bin/thread_pool_test test/thread_pool_test.c  $(SRC) $(INC) $(LDFLAGS) $(CFLAGS)
 
 clean:
 	@rm *.o $(TARGET) bin/* -f

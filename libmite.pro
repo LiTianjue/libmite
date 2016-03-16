@@ -12,7 +12,9 @@ SOURCES += \
     src/json/test/test_utils.c \
     src/json/cJSON.c \
     src/json/cJSON_Utils.c \
-    test/json_test.c
+    test/json_test.c \
+    src/threadpool/threadpool.c \
+    test/thread_pool_test.c
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -94,5 +96,6 @@ HEADERS += \
     inc/openssl/x509v3.h \
     inc/md5/mite_md5.h \
     inc/json/cJSON.h \
-    inc/json/cJSON_Utils.h
+    inc/json/cJSON_Utils.h \
+    inc/threadpool/threadpool.h
 
