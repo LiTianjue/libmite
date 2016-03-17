@@ -5,5 +5,7 @@
 
 ## 1. mysql
 	mysql 数据库操作的简单示例
-## 1. cmdopt
+## 2. cmdopt
 	示范解析命令行参数
+## 3.comtest
+	串口操作的示例程序
