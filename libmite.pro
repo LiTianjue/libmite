@@ -20,7 +20,13 @@ SOURCES += \
     test/socket_test.c \
     src/sockethelper/socket_helper.c \
     example/cmdopt/cmdopt_test.c \
-    example/mysql/mysql_test.c
+    example/mysql/mysql_test.c \
+    example/comtest/comTest.c \
+    src/utils/mite_utils.c \
+    test/utils_test.c \
+    src/crpyto/sm4.c \
+    test/sm4_test.c \
+    src/crypto/sm4.c
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -105,5 +111,7 @@ HEADERS += \
     inc/json/cJSON_Utils.h \
     inc/threadpool/threadpool.h \
     inc/filehelper/mite_file_helper.h \
-    inc/sockethelper/socket_helper.h
+    inc/sockethelper/socket_helper.h \
+    inc/utils/mite_utils.h \
+    inc/crypto/sm4.h
 
