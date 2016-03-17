@@ -1,19 +1,29 @@
 # libmite
-An usefull lib on linux platform
+	一个linux下的工具库，既可以编译为库文件分发使用，又可以将功能代码单独拿出来运用到项目中去,只考虑linux平台(包括嵌入式系统)，使用纯C编写，以后可以使用C++扩展功能
 
-#TODO
-## 1. example code for ordinary option
-	mysql opt , cmdopt parse ,
-## 2. openssl wrapper
-	base64,md5
-## 3. cjson import
-	import cjson code to libmite
-## 4. a simple thread pool
-	thread_pool
-## 5. socket wrapper
-	connect timeout, init address,read ,write
-## 6. file operation
-	copy , move, rename
-## 5. a simple c wrapper logger
+## 目录结构
+	--src			//源代码
+	--inc			//头文件
+	--test			//src中实现接口的测试代码
+	--example		//一些常用操作的示例（非src中的接口）
+	--script		//脚本程序，主要是python,shell实现一些功能
+
+##TODO
+### 待实现的接口
+	实现之后从任务列表中删除，有新功能再加入
+#### 1.数据结构
+	链表
+	队列
+	堆栈
+#### 2.配置文件操作
+#### 3.日志系统
+#### 4.对称加密算法的封装
+#### 5.多线程模型（非线程池）
+#### 6.多进程模型
+#### 7.system系统调用封装
+#### 8.http操作示例（使用libcurl）
+#### 9.信号处理的封装
+#### 10.iptables脚本
+#### 11.数据库操作脚本
 
 
