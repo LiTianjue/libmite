@@ -3,14 +3,13 @@
 #http://192.168.1.120/UpgradeVersionAction_check.action?os=x86&version=2.4.0
 
 import web
+import json
 urls=(
 	'/','index',
 	'/test','test',
-	'UpgradeVersionAction_check.action',"check"
-	'UpgradeVersionAction_check',"check_test"
+	"/json","json_test",
+	'/UpgradeVersionAction_check.action',"check"
 	)
-
-
 
 class index:
 	def GET(self):
@@ -22,11 +21,21 @@ class test:
 
 class check:
 	def GET(self):
-		return "Hello ,Check!"
+		i = web.input()
+		os = i.os
+		version = i.version
+		return "Hello ,Check! os=",os,"version=",version
+	def POST(self):
+		i = web.input(id=[])
+		print i
+		return "OS :" 
 
-class check_test:
+class json_test:
 	def GET(self):
-		return "Hello ,Check Test!"
+		pyDict = {'name':'sslvpn','length':12580,'version':'2.4.0.0','flag':False}
+		web.header('Content_Type','application/json')
+		return json.dumps(pyDict)
+
 
 
 if __name__== "__main__":
