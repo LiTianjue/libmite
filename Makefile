@@ -22,6 +22,7 @@ TARGET += file_test
 TARGET += socket_test
 TARGET += utils_test
 TARGET += sm4_test
+TARGET += xxtea_test
 
 
 all:$(TARGET)
@@ -49,6 +50,11 @@ utils_test:test/utils_test.c
 
 sm4_test:test/sm4_test.c 
 	@$(CC) -o bin/sm4_test test/sm4_test.c  $(SRC) $(INC) $(LDFLAGS) $(CFLAGS)
+
+xxtea_test:test/xxtea_test.c 
+	@$(CC) -o bin/xxtea_test test/xxtea_test.c  $(SRC) $(INC) $(LDFLAGS) $(CFLAGS)
+
+
 clean:
 	@rm *.o $(TARGET) bin/* -f
 
