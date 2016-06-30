@@ -2,9 +2,9 @@
 
 max=30
 log_dir=/home/andy/tmp
-file_type=*.log
-del_args1=-mtime
-del_args2=+2
+file_type="*.log"
+#del_args1=-mtime
+#del_args2=+2
 
 percent=`df /var | tail -1 | awk '{print $5 }' | cut -d'%' -f1`
 
