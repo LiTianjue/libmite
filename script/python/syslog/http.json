@@ -1,0 +1,9 @@
+{
+	"protocol"	: "http",
+	"rule"		: "html",
+	"src"		: "192.168.1.100 56756",
+	"dst"		: "222.46..20.174.100",
+	"key"		: "重置密码",
+	"msg"		: "用户访问重置密码页面",
+	"uri"		: "ResetPasswd.html"
+}

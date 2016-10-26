@@ -12,3 +12,6 @@
 
 #### modify_config
 	配置文件的读取和修改脚本
+
+#### syslog
+	一个通过网络套接字发送syslog的实例
