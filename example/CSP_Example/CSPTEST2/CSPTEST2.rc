@@ -1,0 +1,262 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CSPTEST2.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CSPTEST2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 CSPTEST2"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "CSPTEST2 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2006",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_CSPTEST2_DIALOG DIALOGEX 0, 0, 325, 431
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "私钥和会话密钥操作"
+FONT 9, "宋体"
+BEGIN
+    GROUPBOX        "私钥操作",IDC_STATIC,7,7,311,199,BS_CENTER
+    PUSHBUTTON      "导入加密公/私钥",IDC_IMPORT_ENCRYPT_KEYPAIR,171,185,64,
+                    14
+    PUSHBUTTON      "导出加密公/私钥",IDC_EXPORT_ENCRYPT_KEYPAIR,7,185,64,14
+    PUSHBUTTON      "导出签名公/私钥",IDC_EXPORT_SIGNATURE_KEYPAIR,89,185,64,
+                    14
+    PUSHBUTTON      "导入签名公/私钥",IDC_IMPORT_SIGNATURE_KEYPAIR,253,185,
+                    64,14
+    LTEXT           "导出加密公钥",IDC_STATIC,11,22,68,12
+    LTEXT           "导出加密私钥",IDC_STATIC,11,42,68,12
+    LTEXT           "导出签名公钥",IDC_STATIC,11,62,68,12
+    LTEXT           "导出签名私钥",IDC_STATIC,11,82,68,12
+    EDITTEXT        IDC_EDIT_EXPORT_ENCRYTPUB,87,21,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EXPORT_ENCRYPTPRI,87,41,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EXPORT_SIGNPUB,87,61,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EXPORT_SIGNPRI,87,81,171,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览...",IDC_BROWN1,265,21,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN2,265,41,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN3,265,61,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN4,265,81,50,14
+    GROUPBOX        "会话密钥操作",IDC_STATIC,7,235,311,155,BS_CENTER
+    PUSHBUTTON      "产生并导出会话密钥",IDC_GEN_SESSION_KEY,7,372,79,14
+    PUSHBUTTON      "会话加密",IDC_SESSION_ENCRYPT,152,372,50,14
+    PUSHBUTTON      "会话解密",IDC_SESSION_DECRYPT,268,372,50,14
+    PUSHBUTTON      "退出",IDCANCEL,135,408,52,13
+    LTEXT           "会话密钥导出",IDC_STATIC,10,252,54,8
+    LTEXT           "会话密钥导入",IDC_STATIC,10,292,54,8
+    LTEXT           "保护公钥导入",IDC_STATIC,10,272,57,8
+    LTEXT           "解密私钥导入",IDC_STATIC,10,312,54,8
+    EDITTEXT        IDC_EDIT_EXPORT_SESSIONKEY,73,249,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_SESSIONKEY,73,287,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_SESSION_PUBKEY,73,268,171,14,
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_SESSION_PRIVATEKEY,73,306,171,14,
+                    ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览...",IDC_BROWN5,258,249,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN6,258,267,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN7,258,287,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN8,258,305,50,14
+    LTEXT           "容器名称",IDC_STATIC,13,216,54,8
+    EDITTEXT        IDC_EDIT_CONTAINER,73,214,86,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_ENCRYTPUB,87,101,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_ENCRYPTPRI,87,121,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_SIGNPUB,87,141,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IMPORT_SIGNPRI,87,161,171,14,ES_AUTOHSCROLL
+    LTEXT           "导入加密公钥",IDC_STATIC,11,102,68,12
+    LTEXT           "导入加密私钥",IDC_STATIC,11,122,68,12
+    LTEXT           "导入签名公钥",IDC_STATIC,11,142,68,12
+    LTEXT           "导入签名私钥",IDC_STATIC,11,162,68,12
+    PUSHBUTTON      "浏览...",IDC_BROWN9,265,101,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN10,265,121,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN11,265,141,50,14
+    PUSHBUTTON      "浏览...",IDC_BROWN12,265,161,50,14
+    LTEXT           "待加/解密数据",IDC_STATIC,10,332,55,8
+    LTEXT           "加密/解密后数据",IDC_STATIC,10,348,60,8
+    EDITTEXT        IDC_EDIT_ENCRYPTDATA_PATH,73,325,171,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DECRYPTDATA_PATH,73,344,171,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览...",IDC_BROWN13,258,324,50,14
+    PUSHBUTTON      "浏览...",IDC_BUTTON14,258,344,50,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "CSPTEST2 Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "CSPTEST2\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2006\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CSPTEST2.EXE\0"
+            VALUE "ProductName", "CSPTEST2 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_CSPTEST2_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 318
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 424
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 CSPTEST2(&A)..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\CSPTEST2.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
