@@ -2,6 +2,8 @@ import SocketServer
 import hashlib
 
 import struct 
+import sys
+
 
 
 def ntohl(data):
@@ -15,7 +17,7 @@ def md5(str):
 
 HOST = ''
 PORT = 6000
-ADDR = (HOST,PORT)
+#ADDR = (HOST,PORT)
 class MyRequestHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         while True:
@@ -27,5 +29,11 @@ class MyRequestHandler(SocketServer.BaseRequestHandler):
                 break
         self.request.close()
 
-tcpServ = SocketServer.ThreadingTCPServer(ADDR,MyRequestHandler)
-tcpServ.serve_forever()
+
+if __name__=='__main__':
+	if len(sys.argv)>1:
+		PORT=int(sys.argv[1])
+
+	ADDR = (HOST,PORT)
+	tcpServ = SocketServer.ThreadingTCPServer(ADDR,MyRequestHandler)
+	tcpServ.serve_forever()
