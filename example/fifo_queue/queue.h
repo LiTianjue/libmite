@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -29,4 +32,4 @@ int enqueue(Queue *Q, QueueElement element);
 #define QUEUE_CAPACITY(queue)  ((queue)->capacity)
 #define QUEUE_SIZE(queue)  ((queue)->size)
 
-
+#endif	/*QUEUE_H*/
