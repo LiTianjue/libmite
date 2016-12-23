@@ -15,7 +15,7 @@
 #include <time.h>
 
 
-#include "inc/sockethelper/socket_helper.h"
+#include "socket_helper.h"
 /*-----------------------------------------------
  * 功能：填充tcp地址结构
  *----------------------------------------------*/
@@ -231,4 +231,43 @@ int mite_sock_readWithTimeout(int sockfd,char *buff,int timeout)
             return ret;
         }
     }
+}
+
+//create a tcp listen fd
+//socket_error		-1
+//bind_error		-2
+//listen_error		-3
+
+int mite_sock_createListenSocket(char *ip,int port)
+{
+	int listenfd;
+	struct sockaddr_in server;
+	socklen_t addrlen;
+
+	listenfd = socket(AF_INET,SOCK_STREAM,0);
+	if(listenfd == -1){
+		perror("socker created failed");
+		return -1;
+	}
+	int option;
+	option = SO_REUSEADDR;
+	setsockopt(listenfd,SOL_SOCKET,option,&option,sizeof(option));
+	bzero(&server,sizeof(server));
+	server.sin_family = AF_INET;	//ip_v4
+	server.sin_port = htons(port);	// port
+	inet_aton(ip,&server.sin_addr);	// ip
+
+	if(bind(listenfd,(struct sockaddr*)&server,sizeof(server)) == -1)
+	{
+		perror("bind");
+		return -2;
+	}
+	if(listen(listenfd,4) == -1)
+	{
+		perror("listen");
+		return -3;
+	}
+
+	return listenfd;
+
 }

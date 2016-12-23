@@ -10,6 +10,8 @@
 
 int mite_sock_initAddr(struct sockaddr_in *addr,char *ip,int port);
 
+int mite_sock_createListenSocket(char *ip,int port);
+
 int mite_sock_openSocketByTimeout(char *ip,int port,int timeout);
 
 int  mite_sock_writeWithTimeout(int sockfd,char *buffer,int len,int timeout);
