@@ -1,0 +1,15 @@
+$TTL 3H
+@	IN SOA	ns.fengfan.gov.cn. root  (
+					42	; serial
+					2M	; refresh
+					1M	; retry
+					1W	; expire
+					3H )	; minimum
+	IN NS	ns.fengfan.gov.cn.
+ns	IN A	1.1.1.1
+www	IN A	1.1.1.1
+mail 	IN A 	1.1.1.1
+web1 	IN A 	1.1.1.1
+web2 	IN A 	1.1.1.2
+web 	CNAME	web1
+

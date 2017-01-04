@@ -1,0 +1,5 @@
+[ym]
+name=CentOS
+baseurl=file:///root/CDROM/yumsrc/
+enabled=1
+gpgcheck=0
