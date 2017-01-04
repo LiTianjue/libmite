@@ -1,0 +1,3 @@
+#%PAM-1.0
+auth    required    /%LIB%/security/pam_userdb.so   db=/etc/vsftpd/vusers
+account required    /%LIB%/security/pam_userdb.so   db=/etc/vsftpd/vusers

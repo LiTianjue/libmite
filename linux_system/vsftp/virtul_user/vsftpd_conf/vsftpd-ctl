@@ -1,0 +1,168 @@
+#!/usr/bin/env bash
+
+#============================================================
+#
+#         FileName: configure.sh
+#
+#      Descriptions:
+#
+#          Version: 1.0
+#          Created: 2013-04-22 10:24:58
+#         Revision: (none)
+#
+#           Author: xutao(Tony Xu), hhktony@gmail.com
+#          Company: myself
+#
+#============================================================
+
+ARCH=$(uname -m)
+BACKUP_DATE=`date +%F-%H%M%S`
+FTP_NAME="ftp"
+FTP_CONF_DIR="/etc/vsftpd"
+FTP_ROOT_DIR="/var/$FTP_NAME"
+FTP_VUSERNAME="ftpvuser"
+FTP_VCONF_DIR="/etc/vsftpd/vusers_conf"
+FTP_VROOT_DIR="/var/$FTP_VUSERNAME"
+FTP_VDB_FILE="$FTP_CONF_DIR/vusers.db"
+PAM_CONF_DIR="/etc/pam.d"
+
+msg() {
+    printf '%b\n' "$1" >&2
+}
+
+error() {
+    msg "\33[31m[✘]\33[0m ${1}${2}"
+    exit 1
+}
+
+success() {
+    if [ "$ret" -eq '0' ]; then
+        msg "\33[32m[✔]\33[0m ${1}${2}"
+    fi
+}
+
+ensure_security() {
+    chown 600 $FTP_VDB_FILE
+}
+
+[ $UID -ne 0 ] && error "This program has to be run as root!"
+
+help_info() {
+  cat << EOF
+usage: $0 [OPTIONS]
+
+    help                                  Show this message
+    init                                  Init config
+    user-add <username> <passwd> <rw|r>   Add user
+    user-list                             List user
+    user-delete <username>                Delete user
+EOF
+}
+
+user_add() {
+    local username=$1
+    local passwd=$2
+    local mode=$3
+    if [[ -z $username || -z $passwd || -z $mode ]]; then
+      error "user_add: username or passwd or mode is null!"
+    fi
+
+    if [ $mode == "rw" ]; then
+        cp $FTP_VCONF_DIR/Templates/vuser_conf.r_w $FTP_VCONF_DIR/$username
+    else
+        cp $FTP_VCONF_DIR/Templates/vuser_conf.r   $FTP_VCONF_DIR/$unameser
+    fi
+    sed -i "s/vuser_name/${username}/" $FTP_VCONF_DIR/$username
+    mkdir -p $FTP_VROOT_DIR/$username
+    chown -R $FTP_VUSERNAME:$FTP_VUSERNAME $FTP_VROOT_DIR
+
+    echo -e "$username\n$passwd" | $DB_LOAD -T -t hash $FTP_VDB_FILE
+    ensure_security
+}
+
+user_list() {
+    [ -f $FTP_VDB_FILE ] || exit 0
+    $DB_DUMP -p $FTP_VDB_FILE |
+    sed -e '1,/HEADER=END/d' -e '/DATA=END/,$d' |
+    sed 's/^[ \t]*//' | sed -n '1~2p'
+}
+
+user_delete() {
+    local username=$1
+
+    $DB_DUMP -p $FTP_VDB_FILE |
+    sed -e '1,/HEADER=END/d' -e '/DATA=END/,$d' |
+    sed 's/^[ \t]*//' |
+    sed "/^$username$/{n;d}" |
+    sed "/^$username$/d" |
+    $DB_LOAD -T -t hash ${FTP_VDB_FILE}.new
+
+    mv ${FTP_VDB_FILE}.new $FTP_VDB_FILE
+    ensure_security
+    rm -rf $FTP_VCONF_DIR/$username
+    mv $FTP_VROOT_DIR/$username{,-$BACKUP_DATE}
+    ret="$?"
+    success "$username already deleled"
+    success "backed up to $FTP_VROOT_DIR/$username-$BACKUP_DATE."
+}
+
+init() {
+    cp -r $FTP_CONF_DIR{,-$BACKUP_DATE.bak}
+    rm -rf $FTP_CONF_DIR/*
+
+    if [ $ARCH = 'x86_64' ]; then
+        sed -i 's/%LIB%/lib64/' pam_vsftpd_vusers
+    else
+        sed -i 's/%LIB%/lib/' pam_vsftpd_vusers
+    fi
+
+    for i in `ls`
+    do
+        cp $i $FTP_CONF_DIR -r
+    done
+    mv $FTP_CONF_DIR/pam_vsftpd_vusers $PAM_CONF_DIR
+    # rm $FTP_CONF_DIR/`basename $0` $FTP_CONF_DIR/README.md
+
+    touch /var/log/vsftpd.log > /dev/zero 2>&1
+
+    useradd $FTP_NAME -d $FTP_ROOT_DIR -s /sbin/nologin > /dev/zero 2>&1
+    useradd $FTP_VUSERNAME -d $FTP_VROOT_DIR -s /sbin/nologin > /dev/zero 2>&1
+
+    msg "\n-----------------> Configure over <-----------------\n\n
+    1. Configuration file located in /etc/vsftpd/
+    2. pam_vsftpd file located in /etc/pam.d/
+    3. user dir in /var/ftpvuser/"
+}
+
+check_db_utils() {
+  if [ -x /usr/bin/db_load ]; then
+    DB_LOAD=/usr/bin/db_load
+    DB_DUMP=/usr/bin/db_dump
+    return 0
+  fi
+  return 1
+}
+
+if ! check_db_utils; then
+    error "Could not find db_load/db_dump! Please install the libdb-utils package."
+fi
+
+case $1 in
+  --help|help|-h )
+      help_info
+      exit 0
+      ;;
+  init )
+    init;;
+  user-add )
+    user_add $2 $3 $4;;
+  user-list )
+    user_list;;
+  user-delete )
+    user_delete $2;;
+  *)
+    echo "unknown option: $1"
+    help_info
+    exit 1
+    ;;
+esac

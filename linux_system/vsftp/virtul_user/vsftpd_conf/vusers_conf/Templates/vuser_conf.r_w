@@ -1,0 +1,12 @@
+local_root=/var/ftpvuser/vuser_name
+write_enable=YES
+anon_umask=022
+anon_world_readable_only=NO
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
+#idle_session_timeout=30
+#data_connection_timeout=30
+#max_clients=6
+#max_per_ip=6
+#local_max_rate=25000
