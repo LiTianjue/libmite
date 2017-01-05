@@ -1,0 +1,125 @@
+########### authentication test ###########
+name: test password: test
+test using  ('127.0.0.1', 49841)
+name: doesnotexist password: hehe
+doesnotexist using  ('127.0.0.1', 49842)
+name: can password: 123
+can using  ('127.0.0.1', 49843)
+------------------------------------
+test [ login successful ]
+doesnotexist [  ]
+can [ login successful ]
+########### change to binary mode(optional) ###########
+test [ changed to binary mode ]
+can [ changed to binary mode ]
+########### pwd, mkdir, cwd, rename ###########
+
+User:  test
+------------------------------------
+try: pwd
+"/"
+try: mkdir  testlooooogsuffix
+mkdir success
+try: cd  testlooooogsuffix
+Change working directory success!
+try: cd ..
+Change working directory success!
+try: pwd
+"/"
+try: rename  testlooooogsuffix testshortsuffix
+ready for RNTO
+rename successful
+
+User:  can
+------------------------------------
+try: pwd
+"/Users/can"
+try: mkdir  canlooooogsuffix
+mkdir success
+try: cd  canlooooogsuffix
+Change working directory success!
+try: cd ..
+Change working directory success!
+try: pwd
+"/Users/can"
+try: rename  canlooooogsuffix canshortsuffix
+ready for RNTO
+rename successful
+########### active mode LIST ###########
+200 PORT command successful
+
+LIST format:
+------------------------------------
+.                        
+..                       .dbfseventsd             .DocumentRevisions-V100  
+.DS_Store                .file                    .fseventsd               
+.hotfiles.btree          .MobileBackups           .Spotlight-V100          
+.Trashes                 .vol                     Applications             
+bin                      code                     cores                    
+dev                      Developer                efi                      
+etc                      home                     learning                 
+Library                  mach_kernel              net                      
+Network                  opt                      private                  
+sbin                     System                   testshortsuffix          
+tmp                      Users                    usr                      
+var                      Volumes                  杂                      
+
+
+------------------------------------
+150 here comes listing
+226 directory send OK
+
+########### active mode STOR ###########
+upload file1.txt as test.txt
+200 PORT command successful
+
+150 OK to receive data
+
+226 file transfer complete
+
+average speed: 99.6687556066 kB/s
+total traffic: 50318 Bytes
+########### active mode RETR ###########
+download test.txt as file2.txt
+200 PORT command successful
+
+150 starting transfer file
+226 file transfer complete
+
+average speed: 99.3242218975 kB/s
+total traffic: 100636 Bytes
+########### passive mode STOR ###########
+upload file1.txt as test2.txt
+227 entering passive mode (127,0,0,1,194,183).
+
+remote: 127.0.0.1 49847
+150 OK to receive data
+
+226 file transfer complete
+
+average speed: 93.7249304802 kB/s
+total traffic: 150954 Bytes
+########### passive mode RETR ###########
+download test2.txt as file3.txt
+227 entering passive mode (127,0,0,1,194,185).
+
+remote: 127.0.0.1 49849
+150 starting transfer file
+226 file transfer complete
+
+average speed: 97.0391546538 kB/s
+total traffic: 201272 Bytes
+########### delete files ###########
+try: delete test.txt
+delete success!
+try: delete test2.txt
+delete success!
+try: delete test3.txt
+No such file or directory!
+########### files compare ###########
+file1 is the original file
+file2 is the file upload then download in active mode
+file3 is the file upload then download in passive mode
+------------------------------------
+file1 == file2
+file1 == file3

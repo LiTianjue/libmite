@@ -1,0 +1,8 @@
+myFTP is a simple ftp implementation
+
+to run it, just:
+
+make;
+sudo ./myftp;
+
+
