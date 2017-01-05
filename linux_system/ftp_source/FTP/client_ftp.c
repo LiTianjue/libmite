@@ -37,11 +37,11 @@ int main(int argc, char* argv[])
 	memset((char*) &sin_server, 0, sizeof(struct sockaddr_in));
 	sin_server.sin_family = AF_INET;
 
-	sin_server.sin_addr.s_addr = inet_addr(IPSERVER);
-	sin_server.sin_port = htons(PORTSERVER);
+	//sin_server.sin_addr.s_addr = inet_addr(IPSERVER);
+	//sin_server.sin_port = htons(PORTSERVER);
 	
-	//sin_server.sin_addr.s_addr = inet_addr(ip);
-	//sin_server.sin_port = htons(atoi(port));
+	sin_server.sin_addr.s_addr = inet_addr(ip);
+	sin_server.sin_port = htons(atoi(port));
 
 	if((x = connect(sfd_client, (struct sockaddr*) &sin_server, size_sockaddr)) < 0)
 		er("connect()", x);

@@ -48,8 +48,28 @@ size_t size_sockaddr = sizeof(struct sockaddr), size_packet = sizeof(struct pack
 //服务客户端的线程
 void* serve_client(void*);
 
-int main(void)
+int main(int argc,char *argv[])
 {
+	if(argc < 2 || argc > 3)
+	{
+		printf("ftpserver [IP地址] port启动FTP服务。\n");
+		return -1;
+	}
+	char ip[32] = {0};
+	int port = 1221;
+
+	if(argc == 2){
+		strcpy(ip,"0.0.0.0");
+		port=atoi(argv[1]);
+	}else
+	{	
+		strcpy(ip,argv[1]);
+		port  = atoi(argv[2]);
+	
+	}
+	
+	printf("listen on %s:%d\n",ip,port);
+	
 	//初始化客户列表
 	int i = 0;
 	for(i = 0; i < MAXCLIENT;i++) {
@@ -66,8 +86,13 @@ int main(void)
 	
 	memset((char*) &sin_server, 0, sizeof(struct sockaddr_in));
 	sin_server.sin_family = AF_INET;
-	sin_server.sin_port = htons(PORTSERVER);
-	sin_server.sin_addr.s_addr = htonl(INADDR_ANY);
+	//sin_server.sin_port = htons(PORTSERVER);
+	//sin_server.sin_addr.s_addr = htonl(INADDR_ANY);
+	
+	sin_server.sin_port = htons(port);
+	sin_server.sin_addr.s_addr = inet_addr(ip);
+
+	
 
 	if((x = bind(sfd_server, (struct sockaddr*) &sin_server, size_sockaddr)) < 0)
 		er("bind()", x);
@@ -84,7 +109,7 @@ int main(void)
 	int user_input = 0 ;	//标准输入
 	FD_ZERO(&readSet);
 	FD_SET(sfd_server, &readSet);
-	FD_SET(user_input, &readSet);
+	//FD_SET(user_input, &readSet);
 	
 	
 	while(1)
@@ -96,6 +121,7 @@ int main(void)
 			exit(-1);
 		}
 
+		/*
 		if( FD_ISSET(user_input, &readSet))
 		{
 			fprintf(stderr,"USER input :\n");
@@ -123,6 +149,7 @@ int main(void)
 			if(readyNumber <= 0)
 				continue;
 		}
+		*/
 
 		if(FD_ISSET(sfd_server,&readSet)){
 
@@ -137,7 +164,7 @@ int main(void)
 				x = read(sfd_client,buff,1024);
 				fprintf(stderr,"---------> Login %s\n",buff);
 
-				add_client(buff,inet_ntoa(sin_client.sin_addr),ntohs(sin_client.sin_port));
+				//add_client(buff,inet_ntoa(sin_client.sin_addr),ntohs(sin_client.sin_port));
 			}
 			struct client_info* ci = client_info_alloc(sfd_client, connection_id++);
 
