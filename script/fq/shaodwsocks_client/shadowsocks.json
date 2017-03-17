@@ -1,0 +1,8 @@
+{
+	"server":"45.32.102.24",
+	"server_port":8989,
+	"local_port":1080,
+	"password":"123123",
+	"timeout":600,
+	"method":"aes-256-cfb"
+}
